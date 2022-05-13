@@ -1,6 +1,8 @@
+import NavBar from './components/navbar';
+
 function App() {
   return (
-   <h1>Teste dsmovie</h1>
+    <NavBar></NavBar>
   );
 }
 
