@@ -7,14 +7,6 @@ import { MoviePage } from "types/movie";
 
 function Listing() {
 
-    const movie = {
-        id: 1,
-        image: "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
-        title: "The Witcher",
-        count: 2,
-        score: 4.5
-    };
-
     const [API_DATA, setApiData] = useState([]);
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -39,12 +31,17 @@ function Listing() {
             setPage(data);
         });
 
-    }, [pageNumber]);
+    }, [pageNumber]);// SEMPRE QUE PAGENUMBER MUDA USEEFFECT É CHAMADO
 
+
+    // EMITINDO EVENTO ENTRE COMPONENTES
+    const handleChangePage = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
 
     return (
         <>
-            <Pagination></Pagination>
+            <Pagination page={page} onChange={handleChangePage}></Pagination>
             <div className="container">
                 <div className="row">
 
