@@ -2,12 +2,26 @@ import Pagination from "components/pagination";
 import MovieCard from "components/MovieCard";
 import axios from "axios";
 import { BASE_URL } from "utils/requests";
+import React, { useEffect, useState } from 'react';
+import { MoviePage } from "types/movie";
 
 function Listing() {
 
-    axios.get(`${BASE_URL}/movies`).then(response => {
-        console.log(response.data);
-    });
+    const [API_DATA, setApiData] = useState([]);
+
+    const [pageNumber, setPageNumber] = useState(0);
+
+    useEffect(() => {
+        
+        axios.get(`${BASE_URL}/movies`).then((response) => {
+            setApiData(response.data);
+            const data = response.data as MoviePage;
+            setPageNumber(response.data)
+            console.log(data.number);
+        });
+        
+    }, []);
+    
 
     return (
         <>
